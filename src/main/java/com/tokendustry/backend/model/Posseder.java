@@ -3,6 +3,7 @@ package com.tokendustry.backend.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Posseder")
@@ -25,12 +26,24 @@ public class Posseder {
         private int idUtilisateurs;
 
         public PossederId() {}
+
         public PossederId(int id, int idUtilisateurs) {
             this.id = id;
             this.idUtilisateurs = idUtilisateurs;
         }
 
-        // equals() et hashCode() peuvent être générés automatiquement
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof PossederId)) return false;
+            PossederId that = (PossederId) o;
+            return id == that.id && idUtilisateurs == that.idUtilisateurs;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id, idUtilisateurs);
+        }
     }
 
     // Getters & Setters
