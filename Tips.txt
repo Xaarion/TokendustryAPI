@@ -1,0 +1,28 @@
+NEED :
+
+model
+repositories 
+services 
+contrôleurs
+
+
+Mot-clé                     | Signification SQL
+IsNull() / NotNull()        | IS NULL / IS NOT NULL
+True() / False()            | = TRUE / = FALSE
+IgnoreCase()                | UPPER(colonne) = UPPER(valeur)
+Equals()                    | = (souvent implicite, peut être omis)
+Is()                        |  alias de Equals()
+Between(x, y)               | BETWEEN x AND y
+LessThan(x)                 | < x
+LessThanEqual(x)            | <= x
+GreaterThan(x)              | > x
+GreaterThanEqual(x)         | >= x
+Before(date) / After(date)  | Pour les dates (équivalent à < et >)
+Like(x)                     | LIKE x
+NotLike(x)                  | NOT LIKE x
+StartingWith(x)             | LIKE 'x%'
+EndingWith(x)               | LIKE '%x'
+Containing(x)               | LIKE '%x%'
+NotContaining(x)            | NOT LIKE '%x%'
+In(List)                    | IN (...)
+NotIn(List)                 | NOT IN (...)
