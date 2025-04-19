@@ -1,9 +1,17 @@
+
 NEED :
 
 model
 repositories 
 services 
 contrôleurs
+
+Exemple clair de séparation des rôles
+
+Couche	        |   Rôle
+Controller	    |   Gère les requêtes HTTP (GET, POST…), les routes, les réponses
+Service	        |   Gère la logique métier (calculs, règles, traitements, vérifs)
+Repository	    |   Gère la communication avec la base de données
 
 
 
