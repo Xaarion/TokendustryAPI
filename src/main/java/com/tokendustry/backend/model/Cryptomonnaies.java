@@ -3,8 +3,8 @@ package com.tokendustry.backend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Cryptomonnaies")
-public class Cryptomonnaie {
+@Table(name = "cryptomonnaies")
+public class Cryptomonnaies {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

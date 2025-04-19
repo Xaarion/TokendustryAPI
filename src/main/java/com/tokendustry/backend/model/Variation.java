@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Variation")
+@Table(name = "variations")
 public class Variation {
 
     @Id
@@ -20,7 +20,7 @@ public class Variation {
 
     @ManyToOne
     @JoinColumn(name = "id_Cryptomonnaies", nullable = false)
-    private Cryptomonnaie cryptomonnaie;
+    private Cryptomonnaies cryptomonnaie;
 
     // Getters & Setters
     public int getId() {
@@ -47,11 +47,11 @@ public class Variation {
         this.valeur = valeur;
     }
 
-    public Cryptomonnaie getCryptomonnaie() {
+    public Cryptomonnaies getCryptomonnaie() {
         return cryptomonnaie;
     }
 
-    public void setCryptomonnaie(Cryptomonnaie cryptomonnaie) {
+    public void setCryptomonnaie(Cryptomonnaies cryptomonnaie) {
         this.cryptomonnaie = cryptomonnaie;
     }
 }

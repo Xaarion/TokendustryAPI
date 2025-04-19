@@ -6,6 +6,9 @@ services
 contrôleurs
 
 
+
+🔑 Opérateurs de comparaison
+
 Mot-clé                     | Signification SQL
 IsNull() / NotNull()        | IS NULL / IS NOT NULL
 True() / False()            | = TRUE / = FALSE
@@ -26,3 +29,35 @@ Containing(x)               | LIKE '%x%'
 NotContaining(x)            | NOT LIKE '%x%'
 In(List)                    | IN (...)
 NotIn(List)                 | NOT IN (...)
+
+⚙️ Combinaisons logiques
+
+Mot-clé	                    | Signification SQL
+And	                        | AND
+Or                          | OR
+Not	                        | NOT (préfixe)
+
+🧠 Autres cas utiles
+
+Mot-clé	                    | Signification
+OrderByNomAsc()	            | Tri croissant
+OrderByNomDesc()	        | Tri décroissant
+Top1, Top3, First2	        | Limiter le nombre de résultats
+
+
+
+Utilisateur avec ce mail :
+Optional<Utilisateurs> findByMail(String mail);
+
+
+Cryptos dont le nom contient "coin"
+List<Cryptomonnaie> findByLibelleContaining(String motif);
+
+Historique après une certaine date
+List<HistoriqueDuPorteMonnaie> findByDateAfter(LocalDate date);
+
+Offres triées par prix décroissant
+List<Offres> findByOrderByPrixDesc();
+
+Possession d'un utilisateur pour une crypto
+Optional<Posseder> findByIdUtilisateursAndId(int utilisateurId, int cryptoId);

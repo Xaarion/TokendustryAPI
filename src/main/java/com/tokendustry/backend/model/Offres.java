@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Offres")
-public class Offre {
+@Table(name = "offres")
+public class Offres {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Offre {
 
     @ManyToOne
     @JoinColumn(name = "id_Cryptomonnaies", nullable = false)
-    private Cryptomonnaie cryptomonnaie;
+    private Cryptomonnaies cryptomonnaie;
 
     // Getters & Setters
     public int getId() {
@@ -69,11 +69,11 @@ public class Offre {
         this.utilisateur = utilisateur;
     }
 
-    public Cryptomonnaie getCryptomonnaie() {
+    public Cryptomonnaies getCryptomonnaie() {
         return cryptomonnaie;
     }
 
-    public void setCryptomonnaie(Cryptomonnaie cryptomonnaie) {
+    public void setCryptomonnaie(Cryptomonnaies cryptomonnaie) {
         this.cryptomonnaie = cryptomonnaie;
     }
 }
