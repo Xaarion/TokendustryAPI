@@ -7,11 +7,10 @@ import java.util.Optional;
 import java.util.List;
 
 public interface PossederRepository extends JpaRepository<Posseder, Posseder.PossederId> {
+
+    // Trouver tous les enregistrements d’un utilisateur
     List<Posseder> findByIdUtilisateurs(int idUtilisateurs);
 
-    // Rechercher une quantité pour un utilisateur et une cryptomonnaie donnée
+    // Trouver une crypto spécifique possédée par un utilisateur
     Optional<Posseder> findByIdUtilisateursAndId(int idUtilisateurs, int id);
-
-    // Ou si tu veux être plus spécifique avec l'entité Cryptomonnaie
-    Optional<Posseder> findByIdUtilisateursAndIdCryptomonnaies(int idUtilisateurs, int idCryptomonnaies);
 }
