@@ -3,6 +3,8 @@ package com.tokendustry.backend.controllers;
 import com.tokendustry.backend.model.Utilisateurs;
 import com.tokendustry.backend.services.UtilisateursService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +27,15 @@ public class UtilisateursController {
         return utilisateursService.findById(id);
     }
 
+   @GetMapping("/connexion")
+    public ResponseEntity<Utilisateurs> connecter(
+        @RequestParam String identif,
+        @RequestParam String mdp
+) {
+    return utilisateursService.connexion(identif, mdp)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+}
     @PostMapping
     public Utilisateurs create(@RequestBody Utilisateurs utilisateur) {
         return utilisateursService.save(utilisateur);
