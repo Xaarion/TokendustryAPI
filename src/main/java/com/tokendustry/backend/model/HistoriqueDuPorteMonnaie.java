@@ -11,14 +11,14 @@ public class HistoriqueDuPorteMonnaie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, precision = 20, scale = 20)
+    @Column(nullable = false, precision = 20, scale = 5)
     private java.math.BigDecimal credits;
 
     @Column(nullable = false)
     private LocalDateTime date;
 
     @ManyToOne
-    @JoinColumn(name = "id_Utilisateurss", nullable = false)
+    @JoinColumn(name = "id_Utilisateurs", nullable = false)
     private Utilisateurs utilisateur;
 
     // Getters & Setters

@@ -3,7 +3,7 @@ package com.tokendustry.backend.services;
 import com.tokendustry.backend.model.HistoriqueDuPorteMonnaie;
 import com.tokendustry.backend.repositories.HistoriqueDuPorteMonnaieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service; 
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +20,10 @@ public class HistoriqueDuPorteMonnaieService {
 
     public Optional<HistoriqueDuPorteMonnaie> findById(int id) {
         return historiqueRepository.findById(id);
+    }
+
+    public Optional<HistoriqueDuPorteMonnaie> findSoldeByUserId(int userId) {
+        return historiqueRepository.findFirstByUtilisateur_IdOrderByDateDesc(userId);
     }
 
     public HistoriqueDuPorteMonnaie save(HistoriqueDuPorteMonnaie historique) {

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/historiques")
+@RequestMapping("/historique")
 public class HistoriqueDuPortemonnaieController {
 
     @Autowired
@@ -25,11 +25,16 @@ public class HistoriqueDuPortemonnaieController {
         return historiqueDuPorteMonnaieService.findById(id);
     }
 
+    @GetMapping("/solde/{id}")
+    public Optional<HistoriqueDuPorteMonnaie> getSoldeByUserId(@PathVariable int id) {
+        return historiqueDuPorteMonnaieService.findSoldeByUserId(id);
+    }
+
     @PostMapping
     public HistoriqueDuPorteMonnaie create(@RequestBody HistoriqueDuPorteMonnaie historique) {
         return historiqueDuPorteMonnaieService.save(historique);
     }
-
+ 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
         historiqueDuPorteMonnaieService.deleteById(id);
