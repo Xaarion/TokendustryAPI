@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/variations")
+@RequestMapping("/variations")
 public class VariationsController {
 
     @Autowired
@@ -25,6 +25,11 @@ public class VariationsController {
         return variationsService.findById(id);
     }
 
+    @GetMapping("/crypto/{id}")
+    public Optional<Variations> getByCryptoId(@PathVariable int id) {
+        return variationsService.findLatestByCryptoId(id);
+    }
+    
     @PostMapping
     public Variations create(@RequestBody Variations variation) {
         return variationsService.save(variation);

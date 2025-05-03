@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/cryptos")
+@RequestMapping("/cryptos")
 public class CryptomonnaiesController {
 
     @Autowired
