@@ -27,21 +27,32 @@ public class UtilisateursController {
         return utilisateursService.findById(id);
     }
 
-   @GetMapping("/connexion")
+    @GetMapping("/existe")
+    public boolean utilisateurExiste(
+        @RequestParam String mail,
+        @RequestParam String identifiant
+    ) {
+        return utilisateursService.userExist(mail, identifiant);
+    }
+
+    @GetMapping("/connexion")
     public ResponseEntity<Utilisateurs> connecter(
-        @RequestParam String identif,
-        @RequestParam String mdp
-) {
-    return utilisateursService.connexion(identif, mdp)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
-}
+            @RequestParam String identif,
+            @RequestParam String mdp
+    ) {
+        return utilisateursService.connexion(identif, mdp)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
+
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Utilisateurs create(@RequestBody Utilisateurs utilisateur) {
         return utilisateursService.save(utilisateur);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         utilisateursService.deleteById(id);
     }
