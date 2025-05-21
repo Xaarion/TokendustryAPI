@@ -3,6 +3,7 @@ package com.tokendustry.backend.controllers;
 import com.tokendustry.backend.model.Offres;
 import com.tokendustry.backend.services.OffresService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +26,13 @@ public class OffresController {
         return offresService.findById(id);
     }
 
-    @PostMapping
+   @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Offres create(@RequestBody Offres offre) {
-        return offresService.save(offre);
+
+    return offresService.save(offre);
     }
+    
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {

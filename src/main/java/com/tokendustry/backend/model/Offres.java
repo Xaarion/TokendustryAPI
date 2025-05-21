@@ -3,6 +3,8 @@ package com.tokendustry.backend.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "offres")
 public class Offres {
@@ -17,12 +19,13 @@ public class Offres {
     @Column(nullable = false)
     private java.math.BigDecimal prix;
 
-    @Column(nullable = false)
-    private LocalDateTime dateDeCreation;
+    @Column(name = "date_de_creation", nullable = false)
+@CreationTimestamp // Ajoute ça pour générer automatiquement la date
+private LocalDateTime dateDeCreation;
 
     @ManyToOne
-    @JoinColumn(name = "id_Utilisateurss", nullable = false)
-    private Utilisateurs utilisateur;
+    @JoinColumn(name = "id_utilisateurss", nullable = false)
+    private Utilisateurs utilisateur;    
 
     @ManyToOne
     @JoinColumn(name = "id_Cryptomonnaies", nullable = false)
@@ -64,7 +67,7 @@ public class Offres {
     public Utilisateurs getUtilisateurs() {
         return utilisateur;
     }
-
+    
     public void setUtilisateurs(Utilisateurs utilisateur) {
         this.utilisateur = utilisateur;
     }

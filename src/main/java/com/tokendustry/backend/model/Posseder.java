@@ -17,7 +17,7 @@ public class Posseder {
     @Column(name = "id_Utilisateurs")
     private int idUtilisateurs;
 
-    @Column(nullable = false, precision = 20, scale = 20)
+    @Column(nullable = false, precision = 20, scale = 10)
     private BigDecimal quantite;
 
     // Clé composite

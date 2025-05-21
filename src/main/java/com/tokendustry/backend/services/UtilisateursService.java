@@ -5,7 +5,7 @@ import com.tokendustry.backend.model.Utilisateurs;
 import com.tokendustry.backend.repositories.UtilisateursRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +20,9 @@ public class UtilisateursService {
     @Autowired
     private HistoriqueDuPorteMonnaieService historiqueService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<Utilisateurs> findAll() {
         return utilisateursRepository.findAll();
     }
@@ -32,16 +35,34 @@ public class UtilisateursService {
         return utilisateursRepository.existsByMailOrIdentifiant(mail, identifiant);
     }
 
-    public Utilisateurs save(Utilisateurs utilisateur) {
-        Utilisateurs savedUser = utilisateursRepository.save(utilisateur);
+    public Optional<Utilisateurs> connexion(String identif, String mdp) {
+        Optional<Utilisateurs> userOpt = utilisateursRepository.findByIdentifiant(identif);
+    
+        if (userOpt.isPresent()) {
+            Utilisateurs user = userOpt.get();
+            if (passwordEncoder.matches(mdp, user.getPassword())) {
+                return Optional.of(user);
+            }
+        }
+    
+        return Optional.empty();
+    }
 
+    public Utilisateurs save(Utilisateurs utilisateur) {
+ 
+        utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+    
+        utilisateur.setAcces(1);
+
+        Utilisateurs savedUser = utilisateursRepository.save(utilisateur);
+    
         HistoriqueDuPorteMonnaie historique = new HistoriqueDuPorteMonnaie();
         historique.setUtilisateurs(savedUser);
         historique.setCredits(BigDecimal.valueOf(1000));
         historique.setDate(LocalDateTime.now());
-
+    
         historiqueService.save(historique);
-
+    
         return savedUser;
     }
 
@@ -49,7 +70,5 @@ public class UtilisateursService {
         utilisateursRepository.deleteById(id);
     }
 
-    public Optional<Utilisateurs> connexion(String identif, String mdp) {
-        return utilisateursRepository.findByIdentifiantAndPassword(identif, mdp);
-    }
+   
 }
