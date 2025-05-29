@@ -8,7 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 @Table(name = "offres")
 public class Offres {
-
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,12 +19,12 @@ public class Offres {
     @Column(nullable = false)
     private java.math.BigDecimal prix;
 
-    @Column(name = "date_de_creation", nullable = false)
-@CreationTimestamp // Ajoute ça pour générer automatiquement la date
+@Column(name = "date_de_creation", nullable = false, updatable = false)
+@CreationTimestamp
 private LocalDateTime dateDeCreation;
 
     @ManyToOne
-    @JoinColumn(name = "id_utilisateurss", nullable = false)
+    @JoinColumn(name = "id_Utilisateurs", nullable = false)
     private Utilisateurs utilisateur;    
 
     @ManyToOne
@@ -64,13 +64,14 @@ private LocalDateTime dateDeCreation;
         this.dateDeCreation = dateDeCreation;
     }
 
-    public Utilisateurs getUtilisateurs() {
-        return utilisateur;
+   public Utilisateurs getUtilisateur() {
+    return utilisateur;
     }
-    
-    public void setUtilisateurs(Utilisateurs utilisateur) {
-        this.utilisateur = utilisateur;
+
+    public void setUtilisateur(Utilisateurs utilisateur) {
+    this.utilisateur = utilisateur;
     }
+
 
     public Cryptomonnaies getCryptomonnaie() {
         return cryptomonnaie;

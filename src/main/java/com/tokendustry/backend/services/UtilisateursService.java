@@ -31,6 +31,13 @@ public class UtilisateursService {
         return utilisateursRepository.findById(id);
     }
 
+  public Optional<String> getPseudoById(int id) {
+      return utilisateursRepository.findById(id)
+            .map(Utilisateurs::getPseudonyme);
+}
+
+    
+
     public boolean userExist(String mail, String identifiant) {
         return utilisateursRepository.existsByMailOrIdentifiant(mail, identifiant);
     }

@@ -45,6 +45,14 @@ public class UtilisateursController {
                 .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
+     @GetMapping("/pseudo/id/{id}")
+public ResponseEntity<?> getPseudoById(@PathVariable int id) {
+    return utilisateursService.getPseudoById(id)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
+}
+    
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Utilisateurs create(@RequestBody Utilisateurs utilisateur) {

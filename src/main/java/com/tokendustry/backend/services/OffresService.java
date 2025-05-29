@@ -36,12 +36,12 @@ public class OffresService {
 
   public Offres save(Offres offre) {
     // On récupère les vraies entités depuis leur ID
-    Utilisateurs user = utilisateursRepository.findById(offre.getUtilisateurs().getId())
+    Utilisateurs user = utilisateursRepository.findById(offre.getUtilisateur().getId())
                             .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
     Cryptomonnaies crypto = cryptomonnaiesRepository.findById(offre.getCryptomonnaie().getId())
                             .orElseThrow(() -> new RuntimeException("Cryptomonnaie introuvable"));
 
-    offre.setUtilisateurs(user);
+    offre.setUtilisateur(user);
     offre.setCryptomonnaie(crypto);
     offre.setDateDeCreation(LocalDateTime.now());
 
